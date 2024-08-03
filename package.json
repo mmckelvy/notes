@@ -1,0 +1,19 @@
+{
+  "name": "@mmckelvy/notes",
+  "version": "1.0.0",
+  "description": "A simple note taking tool.",
+  "main": "index.js",
+  "bin": {
+    "todos": "./bin/todos.js",
+    "filter": "./bin/filter.js"
+  },
+  "scripts": {
+    "test:unit": "node --test"
+  },
+  "author": "Mark McKelvy",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "luxon": "^3.4.4"
+  }
+}
