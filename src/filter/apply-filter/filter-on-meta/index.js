@@ -9,7 +9,8 @@ Determine if the options.meta matches ANY of the meta.
 module.exports = function filterOnMeta(note, options) {
   const metaDelim = '|';
 
-  // Get the meta lines.
+  // Get the meta lines, stripping the leading "|"
+  // and the space in the process.
   const metaLines = note.reduce((acc, l) => {
     if (l[0] === metaDelim) {
       acc.push(l.slice(1).trim());
