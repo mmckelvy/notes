@@ -9,6 +9,7 @@ program
   .name('filter')
   .option('-d, --directory <string>', 'Notes directory', '../../')
   .option('-r, --range <string>', 'Date / timestamp range')
+  .option('-m, --meta [strings...]', 'Filter by metadata')
   .action(filter)
 ;
 

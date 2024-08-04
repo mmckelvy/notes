@@ -13,3 +13,13 @@
 [ ] Banana
 
 ---
+
+# 2024-08-04 15:05
+
+| Topic: Foo
+| Tags: bar, baz
+
+Here is a note about Foo, with some references to bar and baz.
+
+---
+
