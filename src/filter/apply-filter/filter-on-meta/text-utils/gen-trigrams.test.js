@@ -17,3 +17,11 @@ test('genTrigrams - ensure no duplicates', () => {
   const result = genTrigrams(text);
   assert.deepStrictEqual(result, expected);
 });
+
+test('genTrigrams - return trigrams for a longer string', () => {
+  const text = 'hello';
+  const expected = new Set(['  h', ' he', 'ell', 'hel', 'llo', 'lo ']);
+
+  const result = genTrigrams(text);
+  assert.deepStrictEqual(result, expected);
+});
