@@ -1,8 +1,8 @@
 const genTrigrams = require('./gen-trigrams');
 
 module.exports = function computeTrigramSimilarity(text1, text2) {
-  const trigrams1 = genTrigrams(text1);
-  const trigrams2 = genTrigrams(text2);
+  const trigrams1 = genTrigrams(text1.toLowerCase());
+  const trigrams2 = genTrigrams(text2.toLowerCase());
 
   // Compute the intersection of trigrams
   const intersection = new Set([...trigrams1].filter(x => trigrams2.has(x)));

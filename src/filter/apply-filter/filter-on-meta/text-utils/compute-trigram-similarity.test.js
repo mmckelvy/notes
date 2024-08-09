@@ -62,3 +62,13 @@ test('computeTrigramSimilarity - handle numbers', () => {
 
   assert.strictEqual(actual, expected);
 });
+
+test('computeTrigramSimilarity - ignore casing', () => {
+  const text1 = 'foo';
+  const text2 = 'Foo';
+
+  const actual = computeTrigramSimilarity(text1, text2);
+  const expected = 1;
+
+  assert.strictEqual(actual, expected);
+});

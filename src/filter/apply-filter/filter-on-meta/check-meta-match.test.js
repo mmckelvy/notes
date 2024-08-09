@@ -10,8 +10,9 @@ test('checkMetaMatch - match key only', () => {
     'Topic: Marine biology',
     'Tags: whales, fish, ocean'
   ];
+  const sensitivity = 0.6;
 
-  const actual = checkMetaMatch(opt);
+  const actual = checkMetaMatch(opt, metaLines, sensitivity);
   const expected = true;
 
   assert.strictEqual(actual, expected);
@@ -25,7 +26,9 @@ test('checkMetaMatch - match key and exact value', () => {
     'Tags: whales, fish, ocean'
   ];
 
-  const actual = checkMetaMatch(opt);
+  const sensitivity = 0.6;
+
+  const actual = checkMetaMatch(opt, metaLines, sensitivity);
   const expected = true;
 
   assert.strictEqual(actual, expected);
@@ -39,7 +42,9 @@ test('checkMetaMatch - return false if the key does not match', () => {
     'Tags: whales, fish, ocean'
   ];
 
-  const actual = checkMetaMatch(opt);
+  const sensitivity = 0.6;
+
+  const actual = checkMetaMatch(opt, metaLines, sensitivity);
   const expected = false;
 
   assert.strictEqual(actual, expected);
@@ -53,7 +58,9 @@ test('checkMetaMatch - Match a tag', () => {
     'Tags: whales, fish, ocean'
   ];
 
-  const actual = checkMetaMatch(opt);
+  const sensitivity = 0.6;
+
+  const actual = checkMetaMatch(opt, metaLines, sensitivity);
   const expected = true;
 
   assert.strictEqual(actual, expected);
@@ -67,7 +74,9 @@ test('checkMetaMatch - Return true for a fuzzy match', () => {
     'Tags: whales, fish, ocean'
   ];
 
-  const actual = checkMetaMatch(opt);
+  const sensitivity = 0.6;
+
+  const actual = checkMetaMatch(opt, metaLines, sensitivity);
   const expected = true;
 
   assert.strictEqual(actual, expected);
