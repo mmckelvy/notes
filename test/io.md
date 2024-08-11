@@ -1,3 +1,0 @@
-Topic
-Tags
-Fruit

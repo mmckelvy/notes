@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 
-const checkForMeta = require('./check-for-meta');
+const parseMeta = require('../utils/parse-meta');
+const getMetaKey = require('./get-meta-key');
 
 module.exports = async function meta(options) {
   const f = path.join(options.directory, 'main.md');
@@ -20,9 +21,10 @@ module.exports = async function meta(options) {
   const seen = {};
 
   rl.on('line', (line) => {
-    const m = checkForMeta(line);
+    const meta = parseMeta(line);
 
-    if (typeof m === 'string' && !seen.hasOwnProperty(m)) {
+    if (meta && !seen.hasOwnProperty(m)) {
+      const key = getMetaKey(meta);
       output.write(`${m}\n`);
       seen[m] = true;
     }
@@ -33,4 +35,3 @@ module.exports = async function meta(options) {
     output.end();
   });
 };
-

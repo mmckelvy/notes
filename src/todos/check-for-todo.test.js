@@ -1,5 +1,6 @@
 const test = require('node:test');
 const assert = require('assert');
+const { DateTime } = require('luxon');
 
 const checkForTodo = require('./check-for-todo');
 
@@ -61,5 +62,29 @@ test('checkForTodo - return true for an open todo with extra spaces', () => {
 test('checkForTodo - return false for an open todo with options.done', () => {
   const line = '[ ] This is an open todo';
   assert.strictEqual(checkForTodo(line, {done: true}), false);
+});
+
+test('checkForTodo - return true for a completed todo in range', () => {
+  const dt = DateTime.now().toISO();
+
+  const line = `[x] This is an closed todo (${dt})`;
+  const options = {
+    done: true,
+    range: '1 week'
+  };
+
+  assert.strictEqual(checkForTodo(line, options), true);
+});
+
+test('checkForTodo - return false for a completed todo out of range', () => {
+  const dt = DateTime.now().minus({weeks: 2}).toISO();
+
+  const line = `[x] This is an closed todo (${dt})`;
+  const options = {
+    done: true,
+    range: '1 week'
+  };
+
+  assert.strictEqual(checkForTodo(line, options), false);
 });
 

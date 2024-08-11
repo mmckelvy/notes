@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 
-const checkForTodo = require('./check-for-todo');
+const checkForTags = require('./check-for-tags');
 
-module.exports = async function todos(options) {
+module.exports = async function tags(options) {
   const f = path.join(options.directory, 'main.md');
   const x = path.join(options.directory, 'io.md');
 
@@ -17,16 +17,15 @@ module.exports = async function todos(options) {
     terminal: false
   });
 
-  let lineNumber = 1;
+  const seen = {};
 
   rl.on('line', (line) => {
-    const isTodo = checkForTodo(line, options);
+    const m = checkForTags(line);
 
-    if (isTodo) {
-      output.write(`${line}\n`);
+    if (typeof m === 'string' && !seen.hasOwnProperty(m)) {
+      output.write(`${m}\n`);
+      seen[m] = true;
     }
-
-    lineNumber++;
   });
 
   rl.on('close', () => {

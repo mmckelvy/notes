@@ -1,5 +1,4 @@
-const computeTrigramSimilarity =
-  require('./text-utils/compute-trigram-similarity');
+const computeTrigramSimilarity = require('./compute-trigram-similarity');
 
 module.exports = function checkMetaMatch(opt, metaLines, sensitivity) {
   for (const l of metaLines) {
