@@ -17,11 +17,14 @@ module.exports = async function meta(options) {
     terminal: false
   });
 
+  const seen = {};
+
   rl.on('line', (line) => {
     const m = checkForMeta(line);
 
-    if (isMeta) {
+    if (typeof m === 'string' && !seen.hasOwnProperty(m)) {
       output.write(`${m}\n`);
+      seen[m] = true;
     }
   });
 

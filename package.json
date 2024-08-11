@@ -5,7 +5,8 @@
   "main": "index.js",
   "bin": {
     "todos": "./bin/todos.js",
-    "filter": "./bin/filter.js"
+    "filter": "./bin/filter.js",
+    "meta": "./bin/meta.js"
   },
   "scripts": {
     "test:unit": "node --test"
