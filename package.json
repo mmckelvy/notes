@@ -6,7 +6,8 @@
   "bin": {
     "todos": "./bin/todos.js",
     "filter": "./bin/filter.js",
-    "meta": "./bin/meta.js"
+    "meta": "./bin/meta.js",
+    "tags": "./bin/tags.js"
   },
   "scripts": {
     "test:unit": "node --test"

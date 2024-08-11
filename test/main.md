@@ -27,6 +27,7 @@ Here is a note about Foo, with some references to bar and baz.
 
 | Topic: Bar
 | Fruit: Apple, Banana
+| Tags: bar, fizz
 
 Here is a note about Bar, with some tags about Apple and Banana.
 

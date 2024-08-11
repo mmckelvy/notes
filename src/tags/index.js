@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 
-const checkForTags = require('./check-for-tags');
+const parseMeta = require('../utils/parse-meta');
+const getTags = require('./get-tags');
 
 module.exports = async function tags(options) {
   const f = path.join(options.directory, 'main.md');
@@ -20,11 +21,17 @@ module.exports = async function tags(options) {
   const seen = {};
 
   rl.on('line', (line) => {
-    const m = checkForTags(line);
+    const meta = parseMeta(line);
 
-    if (typeof m === 'string' && !seen.hasOwnProperty(m)) {
-      output.write(`${m}\n`);
-      seen[m] = true;
+    if (meta) {
+      const tags = getTags(meta);
+
+      for (const tag of tags) {
+        if (!seen.hasOwnProperty(tag)) {
+          output.write(`${tag}\n`);
+          seen[tag] = true;
+        }
+      }
     }
   });
 
