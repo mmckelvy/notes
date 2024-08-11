@@ -6,8 +6,8 @@ const parseMeta = require('../utils/parse-meta');
 const getMetaKey = require('./get-meta-key');
 
 module.exports = async function meta(options) {
-  const f = path.join(options.directory, 'main.md');
-  const x = path.join(options.directory, 'io.md');
+  const f = options.input;
+  const x = options.output;
 
   const input = fs.createReadStream(f);
   const output = fs.createWriteStream(x);

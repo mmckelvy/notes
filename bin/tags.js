@@ -7,7 +7,8 @@ const tags = require('../src/tags');
 
 program
   .name('tags')
-  .option('-d, --directory <string>', 'Notes directory', '../../')
+  .option('-i, --input <string>', 'Input file', '../../input.md')
+  .option('-o, --output <string>', 'Output file', '../../output.md')
   .action(tags)
 ;
 

@@ -44,3 +44,13 @@ select a post
 
 We'll need to move the range filter logic out to its own module.
 Probably should move the metaDelim out to its own section.
+
+
+Remaining items:
+
+[ ] Add more unit tests.
+[ ] Full integration tests.
+[ ] Args for the full file paths.
+[ ] Start and end timestamps
+[ ] README
+[ ] Publish!

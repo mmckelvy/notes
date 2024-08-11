@@ -7,7 +7,8 @@ const meta = require('../src/meta');
 
 program
   .name('meta')
-  .option('-d, --directory <string>', 'Notes directory', '../../')
+  .option('-i, --input <string>', 'Input file', '../../input.md')
+  .option('-o, --output <string>', 'Output file', '../../output.md')
   .action(meta)
 ;
 

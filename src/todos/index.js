@@ -5,8 +5,8 @@ const readline = require('readline');
 const checkForTodo = require('./check-for-todo');
 
 module.exports = async function todos(options) {
-  const f = path.join(options.directory, 'main.md');
-  const x = path.join(options.directory, 'io.md');
+  const f = options.input;
+  const x = options.output;
 
   const input = fs.createReadStream(f);
   const output = fs.createWriteStream(x);
