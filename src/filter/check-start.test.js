@@ -1,5 +1,6 @@
 const assert = require('assert');
 const test = require('node:test');
+
 const checkStart = require('./check-start');
 
 test('checkStart - return true for valid ISO date starting with "# "',
