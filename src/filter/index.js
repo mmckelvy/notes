@@ -1,12 +1,11 @@
 const fs = require('fs');
-const path = require('path');
 const readline = require('readline');
 
 const checkStart = require('./check-start');
 const checkEnd = require('./check-end');
 const applyFilter = require('./apply-filter');
 
-module.exports = async function filter(options) {
+module.exports = function filter(options) {
   const f = options.input;
   const x = options.output;
 
@@ -59,3 +58,8 @@ module.exports = async function filter(options) {
     output.end();
   });
 };
+
+process.on('uncaughtException', (err) => {
+  console.log(err);
+  process.exit(1);
+});

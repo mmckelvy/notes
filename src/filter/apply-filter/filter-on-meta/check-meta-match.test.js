@@ -81,3 +81,19 @@ test('checkMetaMatch - Return true for a fuzzy match', () => {
 
   assert.strictEqual(actual, expected);
 });
+
+test('checkMetaMatch - Return true for strict match', () => {
+  const opt = {foo: 'bar'};
+  const metaLines = [
+    'Foo: Bar',
+    'Topic: Marine biology',
+    'Tags: whales, fish, ocean'
+  ];
+
+  const sensitivity = 1;
+
+  const actual = checkMetaMatch(opt, metaLines, sensitivity);
+  const expected = true;
+
+  assert.strictEqual(actual, expected);
+});

@@ -4,7 +4,7 @@ const readline = require('readline');
 
 const checkForTodo = require('./check-for-todo');
 
-module.exports = async function todos(options) {
+module.exports = function todos(options) {
   const f = options.input;
   const x = options.output;
 

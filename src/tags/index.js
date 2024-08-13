@@ -5,7 +5,7 @@ const readline = require('readline');
 const parseMeta = require('../utils/parse-meta');
 const getTags = require('./get-tags');
 
-module.exports = async function tags(options) {
+module.exports = function tags(options) {
   const f = options.input;
   const x = options.output;
 

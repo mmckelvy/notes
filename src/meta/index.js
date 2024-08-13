@@ -5,7 +5,7 @@ const readline = require('readline');
 const parseMeta = require('../utils/parse-meta');
 const getMetaKey = require('./get-meta-key');
 
-module.exports = async function meta(options) {
+module.exports = function meta(options) {
   const f = options.input;
   const x = options.output;
 

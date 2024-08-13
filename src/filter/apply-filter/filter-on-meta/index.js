@@ -22,6 +22,7 @@ module.exports = function filterOnMeta(note, options) {
 
   for (const opt of options.meta) {
     const o = parseMetaOpt(opt);
+
     const match = checkMetaMatch(o, metaLines, options.sensitivity);
 
     if (!match) {

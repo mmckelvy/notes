@@ -11,7 +11,7 @@ module.exports = function checkMetaMatch(opt, metaLines, sensitivity) {
 
     // Check for a key match only
     if (typeof optVal === 'boolean') {
-      if (keyScore > sensitivity) {
+      if (keyScore >= sensitivity) {
         return true;
       }
 
@@ -25,7 +25,7 @@ module.exports = function checkMetaMatch(opt, metaLines, sensitivity) {
         for (const tag of tags) {
           const valScore = computeTrigramSimilarity(optVal, tag.trim());
 
-          if (valScore > sensitivity) {
+          if (valScore >= sensitivity) {
             return true;
           }
         }
@@ -34,7 +34,7 @@ module.exports = function checkMetaMatch(opt, metaLines, sensitivity) {
     } else {
       const valScore = computeTrigramSimilarity(optVal, metaVal);
 
-      if (keyScore > sensitivity && valScore > sensitivity) {
+      if (keyScore >= sensitivity && valScore >= sensitivity) {
         return true;
       }
     }
