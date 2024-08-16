@@ -53,3 +53,6 @@ Remaining items:
 [ ] Start and end timestamps
 [ ] README
 [ ] Publish!
+
+
+Update README and publish!
