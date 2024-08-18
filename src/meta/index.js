@@ -23,10 +23,13 @@ module.exports = function meta(options) {
   rl.on('line', (line) => {
     const meta = parseMeta(line);
 
-    if (meta && !seen.hasOwnProperty(m)) {
+    if (meta) {
       const key = getMetaKey(meta);
-      output.write(`${m}\n`);
-      seen[m] = true;
+
+      if (!seen.hasOwnProperty(key)) {
+        output.write(`${key}\n`);
+        seen[key] = true;
+      }
     }
   });
 

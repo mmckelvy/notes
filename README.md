@@ -1,6 +1,6 @@
-# @mmckelvy/quicknote
+# Quicknote
 
-A simple command line tool to parse notes.  Write your notes in markdown, follow a few basic conventions, quickly find the information you need.
+A simple command line tool to parse your notes.  Write your notes in a single markdown file, run a few commands to keep track of your todos and filter by date range, tags, and custom metadata.
 
 ## Installation
 
@@ -10,95 +10,314 @@ npm install --save @mmckelvy/quicknote
 
 ## Usage
 
-Create single markdown file for all of your notes.  Structure your notes as follows:
+### Creating notes
+
+Create a single markdown file and start adding notes.  By default Quicknote will look for a file called `input.md` in the project's root directory (the same directory as your `package.json`).  You can change this by passing an alternative file path, which we'll get to later.
+
+Within the input markdown file, create notes using the following conventions:
+
+1. Each note starts with a hashtag followed by a timestamp:
 
 ```
-# 2024-08-15 21:58
+# 2024-08-10 14:41
 
-| Topic: My first note
-| Tags: foo
+Note content goes here.
+```
 
-Here is the first note.  It's about frontend development.  Each note starts with a hashtag and a timestamp and closes with three dashes "---".
+2. Each note ends with three dashes (`---`):
 
----
+```
+# 2024-08-10 14:41
 
-# 2024-08-17 10:20
-
-| Topic: My second note
-| Tags: bar, baz
-
-This is a second note.  Each note can include "meta" information.  To create meta information, start the line with a pipe character "|" followed by key value pairs (key: value).  For example, in this note, the metadata is:
-
-"Topic": "My second note"
-"Tags": "bar, baz"
-
-Metadata can be anything you wish.  The one special metadata element is "Tags".  Quicknote recognizes the tags key and will parse and filter off them accordingly.
+Note content goes here.
 
 ---
 
-# 2024-08-17 17:55
+```
 
-Notes can also include todos.  Create a todo like this:
+3. You can add custom metadata to any note by starting a line with a pipe character followed by a key value pair:
+
+```
+# 2024-08-10 14:41
+
+| Activity: Customer call
+| Customer: Acme
+
+Note content goes here.
+
+---
+
+```
+
+4. Metadata can be anything, but Quicknote will recognize one special metadata category: `tags`:
+
+```
+# 2024-08-10 14:41
+
+| Activity: Customer call
+| Customer: Acme
+| Tags: discovery, smb
+
+Note content goes here.
+
+---
+
+```
+
+You can add any number of tags to a note, just separate each tag with a comma.
+
+5. You can create todos by starting a line with a pair of brackets:
+
+```
+# 2024-08-10 14:41
+
+| Activity: Customer call
+| Customer: Acme
+| Tags: discovery, smb
+
+Note content goes here.
 
 [ ] This is an open todo.
-[x] This is a completed todo.
 
 ---
 
 ```
 
+6. Mark a todo as done by inserting an `x` between the brackets:
 
+```
+# 2024-08-10 14:41
 
+| Activity: Customer call
+| Customer: Acme
+| Tags: discovery, smb
 
+Note content goes here.
 
+[x] This todo is done.
 
-How do we want to set this up?
+---
 
-npm install
+```
 
-configure:
+7. Add another note by simply adding a new hashtag and timestamp:
 
-create two files:
-main.md
-io.md
+```
+# 2024-08-10 14:41
 
-line numbers.
+| Activity: Customer call
+| Customer: Acme
+| Tags: discovery, smb
 
-Create as separate commands.
+Note content goes here.
 
-todos -> program
-filter -> program
+[x] This todo is done.
 
-Will have the option to output to:
+---
 
-HTML
-PDF
-Word
-CSV
+# 2024-08-18 14:51
 
-filter -m activity -r "1 week"
-filter -s 2024-07-24 -e 2024-07-30
-filter -m customer="Cosma"
-filter -m tag="foo"
+| Activity: Internal meeting
+| Team: Product
+| Tags: roadmap
 
-meta
-tags
+Here is another note.
 
-select a post
+[ ] Send meeting summary to team.
 
+---
 
+```
 
-We'll need to move the range filter logic out to its own module.
-Probably should move the metaDelim out to its own section.
+### Parsing notes
 
+Once you have some notes, you can parse them to find the information you need.  Quicknote parses your notes and outputs them to a separate output file.  By default, Quicknote will write to a file called `output.md` in the project's root directory.  Again you can change this by specifying a custom file path.
 
-Remaining items:
+#### Todos
 
-[ ] Add more unit tests.
-[ ] Args for the full file paths.
-[ ] Start and end timestamps
-[ ] README
-[ ] Publish!
+You can output your open todos:
 
+```
+npx todos
+```
 
-Update README and publish!
+Outputs:
+
+```
+[ ] Send meeting summary to team.
+```
+
+in `output.md`.
+
+Output your completed todos from the prior week:
+
+```
+npx todos --done --range '1 week'
+```
+
+Outputs:
+
+```
+[x] This todo is done.
+```
+
+#### Filter
+
+You can filter notes by range:
+
+```
+npx filter -range '1 week'
+```
+
+Outputs:
+
+```
+# 2024-08-18 14:51
+
+| Activity: Internal meeting
+| Team: Product
+| Tags: roadmap
+
+Here is another note.
+
+[ ] Send meeting summary to team.
+
+---
+```
+
+You can filter notes by custom metadata:
+
+```
+npx filter --meta customer=acme
+```
+
+Outputs:
+
+```
+# 2024-08-10 14:41
+
+| Activity: Customer call
+| Customer: Acme
+| Tags: discovery, smb
+
+Note content goes here.
+
+[x] This todo is done.
+
+---
+```
+
+You can filter metadata by the key value pair, or just the key:
+
+```
+npx filter --meta customer
+```
+
+This will output all notes with the `customer` key, regardless of what the value is.
+
+The metadata filter uses trigram similarity with the default similarity score sensitivity set to 0.6 out of a possible 1.0.  You can make the matching more strict by increasing the similarity score sensitivity (up to 1) and less strict by decreasing the similarity score sensitivity (down to 0):
+
+```
+npx filter --meta customer=acme --sensitivity 1 // will only output exact matches.
+```
+
+You can combine range and metadata filters:
+
+```
+npx filter --meta customer --range '1 week'
+```
+
+Filtering on tags work the same way as any other metadata element:
+
+```
+npx filter --meta tag=discovery
+```
+
+### Organizing your tags and custom metadata
+
+You can output all of your unique metadata keys by running:
+
+```
+npx meta
+```
+
+Outputs:
+
+```
+Activity
+Customer
+Team
+Tags
+```
+
+Similarly, you can output all of your tags by running:
+
+```
+npx tags
+```
+
+Outputs:
+
+```
+discovery
+smb
+roadmap
+```
+
+## API
+
+### `todos`
+
+```
+Usage: npx todos [options]
+
+Options:
+  -i, --input <string>   Input file (default: "../../input.md")
+  -o, --output <string>  Output file (default: "../../output.md")
+  -r, --range <string>   Filter by date / timestamp range
+  -x, --done             Include only completed todos
+  -a, --all              Include all todos
+  -h, --help             display help for command
+```
+
+### `filter`
+
+```
+Usage: npx filter [options]
+
+Options:
+  -i, --input <string>        Input file (default: "../../input.md")
+  -o, --output <string>       Output file (default: "../../output.md")
+  -r, --range <string>        Filter by date / time range
+  -m, --meta [strings...]     Filter by metadata
+  -s, --sensitivity <number>  Filter sensitivity from 0 - 1 (default: 0.6)
+  -h, --help                  display help for command
+```
+
+### `meta`
+
+```
+Usage: npx meta [options]
+
+Options:
+  -i, --input <string>   Input file (default: "../../input.md")
+  -o, --output <string>  Output file (default: "../../output.md")
+  -h, --help             display help for command
+```
+
+### `tags`
+
+```
+Usage: tags [options]
+
+Options:
+  -i, --input <string>   Input file (default: "../../input.md")
+  -o, --output <string>  Output file (default: "../../output.md")
+  -h, --help             display help for command
+```
+
+## Tests
+
+```
+npm run test:unit
+```

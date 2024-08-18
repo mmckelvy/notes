@@ -1,4 +1,3 @@
-[ ] Two
-[ ] Three
-[ ] Apple
-[ ] Pear
+Topic
+Tags
+Fruit

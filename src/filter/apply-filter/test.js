@@ -190,3 +190,27 @@ test('applyFilter - return false for strict miss', () => {
 
   assert.strictEqual(actual, expected);
 });
+
+test('applyFilter - return true for a matching tag', () => {
+  const ts = DateTime.now().minus({weeks: 2}).toISO();
+
+  const note = [
+    `# ${ts}`,
+    '| Topic: Oceans',
+    '| Tags: whales',
+    '',
+    'Here is a note about Oceans',
+    '',
+    '---'
+  ];
+
+  const options = {
+    meta: ['tag=whales'],
+    sensitivity: 0.6
+  };
+
+  const actual = applyFilter(note, options);
+  const expected = true;
+
+  assert.strictEqual(actual, expected);
+});
