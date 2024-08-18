@@ -1,7 +1,7 @@
 {
   "name": "@mmckelvy/notes",
   "version": "1.0.0",
-  "description": "A simple note taking tool.",
+  "description": "A simple command line tool to parse notes.",
   "main": "index.js",
   "bin": {
     "todos": "./bin/todos.js",
