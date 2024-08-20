@@ -1,6 +1,6 @@
 # Quicknote
 
-A simple command line tool to parse your notes.  Write your notes in a single markdown file, run a few commands to keep track of your todos and filter by date range, tags, and custom metadata.
+A simple command line tool to parse markdown based notes.  Track todos, filter by date ranges, custom metadata, and tags.
 
 ## Installation
 
