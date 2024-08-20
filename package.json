@@ -1,5 +1,5 @@
 {
-  "name": "@mmckelvy/notes",
+  "name": "@mmckelvy/quicknote",
   "version": "1.0.0",
   "description": "A simple command line tool to parse notes.",
   "main": "index.js",
