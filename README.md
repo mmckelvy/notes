@@ -16,7 +16,7 @@ Create a single markdown file and start adding notes.  By default Quicknote will
 
 Within the input markdown file, create notes using the following conventions:
 
-1. Each note starts with a hashtag followed by a timestamp:
+**1. Each note starts with a hashtag followed by a timestamp:**
 
 ```
 # 2024-08-10 14:41
@@ -24,7 +24,7 @@ Within the input markdown file, create notes using the following conventions:
 Note content goes here.
 ```
 
-2. Each note ends with three dashes (`---`):
+**2. Each note ends with three dashes (`---`):**
 
 ```
 # 2024-08-10 14:41
@@ -35,7 +35,7 @@ Note content goes here.
 
 ```
 
-3. You can add custom metadata to any note by starting a line with a pipe character followed by a key value pair:
+**3. You can add custom metadata to any note by starting a line with a pipe character followed by a key value pair:**
 
 ```
 # 2024-08-10 14:41
@@ -49,7 +49,7 @@ Note content goes here.
 
 ```
 
-4. Metadata can be anything, but Quicknote will recognize one special metadata category: `tags`:
+**4. Metadata can be anything, but Quicknote will recognize one special metadata category, `tags`:**
 
 ```
 # 2024-08-10 14:41
@@ -66,7 +66,7 @@ Note content goes here.
 
 You can add any number of tags to a note, just separate each tag with a comma.
 
-5. You can create todos by starting a line with a pair of brackets:
+**5. You can create todos by starting a line with a pair of brackets:**
 
 ```
 # 2024-08-10 14:41
@@ -83,7 +83,7 @@ Note content goes here.
 
 ```
 
-6. Mark a todo as done by inserting an `x` between the brackets:
+**6. Mark a todo as done by inserting an `x` between the brackets:**
 
 ```
 # 2024-08-10 14:41
@@ -100,7 +100,7 @@ Note content goes here.
 
 ```
 
-7. Add another note by simply adding a new hashtag and timestamp:
+**7. Add another note by simply adding a new hashtag and timestamp:**
 
 ```
 # 2024-08-10 14:41
