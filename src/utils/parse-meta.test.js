@@ -26,3 +26,19 @@ test('parseMeta - handle multi-word meta', t => {
 
   assert.strictEqual(actual, expected);
 });
+
+test('parseMeta - handle tags', t => {
+  const line = '| Tags: apple, orange, banana';
+  const actual = parseMeta(line);
+  const expected = 'Tags: apple, orange, banana';
+
+  assert.strictEqual(actual, expected);
+});
+
+test('parseMeta - handle dashes and underscores', t => {
+  const line = '| Tags: apple-pear, orange_pineapple, banana';
+  const actual = parseMeta(line);
+  const expected = 'Tags: apple-pear, orange_pineapple, banana';
+
+  assert.strictEqual(actual, expected);
+});
