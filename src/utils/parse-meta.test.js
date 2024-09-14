@@ -34,3 +34,11 @@ test('parseMeta - handle tags', t => {
 
   assert.strictEqual(actual, expected);
 });
+
+test('parseMeta - handle dashes and underscores', t => {
+  const line = '| Tags: apple-pear, orange_pineapple, banana';
+  const actual = parseMeta(line);
+  const expected = 'Tags: apple-pear, orange_pineapple, banana';
+
+  assert.strictEqual(actual, expected);
+});
